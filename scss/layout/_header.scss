@@ -1,0 +1,51 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+.header {
+  background-color: vars.$bg-dark;
+  color: vars.$text-light;
+  padding: vars.$spacing-md 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  &__container {
+    @include mix.container(1200px);
+    @include mix.flex-center(row, space-between, center);
+
+    @include mix.respond-to(vars.$bp-mobile) {
+      flex-direction: column;
+      gap: vars.$spacing-md;
+    }
+  }
+
+  &__logo {
+    font-family: vars.$font-heading;
+    font-size: fn.rem(24);
+    font-weight: bold;
+    color: vars.$secondary-color;
+  }
+
+  &__nav-list {
+    @include mix.flex-center(row, center, center);
+    gap: vars.$spacing-lg;
+
+    @include mix.respond-to(vars.$bp-mobile) {
+      flex-wrap: wrap;
+      gap: vars.$spacing-sm;
+    }
+  }
+
+  &__nav-link {
+    color: vars.$text-light;
+    padding: vars.$spacing-xs vars.$spacing-sm;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+
+    &:hover,
+    &--active {
+      background-color: vars.$primary-color;
+    }
+  }
+}
