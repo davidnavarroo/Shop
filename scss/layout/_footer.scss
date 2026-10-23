@@ -1,0 +1,135 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+.footer {
+  background-color: vars.$bg-dark;
+  color: vars.$text-light;
+  padding: vars.$spacing-xl 0;
+  margin-top: vars.$spacing-xl;
+
+  &__container {
+    @include mix.container(1200px);
+    @include mix.flex-center(row, space-between, center);
+
+    @include mix.respond-to(vars.$bp-mobile) {
+      flex-direction: column;
+      text-align: center;
+      gap: vars.$spacing-md;
+    }
+  }
+
+  &__copy {
+    font-size: fn.rem(14);
+    opacity: 0.8;
+  }
+
+  &__links {
+    display: flex;
+    gap: vars.$spacing-md;
+  }
+
+  &__link {
+    color: vars.$secondary-color;
+    font-size: fn.rem(14);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+6. scss/main.scss
+Archivo principal que solo contiene @use (requisito estricto del punto 3.1).
+
+@use "abstracts/variables";
+@use "abstracts/functions";
+@use "abstracts/mixins";
+
+@use "base/reset";
+
+@use "layout/header";
+@use "layout/footer";
+
+@use "components/button";
+@use "components/card";
+7. index.html (Inicio)
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PixelVault - Inicio</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__container">
+      <a href="index.html" class="header__logo">PixelVault</a>
+      <nav aria-label="Navegación principal">
+        <ul class="header__nav-list">
+          <li><a href="index.html" class="header__nav-link header__nav-link--active">Inicio</a></li>
+          <li><a href="catalogo.html" class="header__nav-link">Catálogo</a></li>
+          <li><a href="producto.html" class="header__nav-link">Destacado</a></li>
+          <li><a href="contacto.html" class="header__nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <section class="hero">
+      <h1 class="hero__title">Bienvenido a PixelVault</h1>
+      <p class="hero__subtitle">Tu tienda especializada en videojuegos físicos y coleccionismo retro y actual.</p>
+      <a href="catalogo.html" class="button button--primary">Explorar Catálogo</a>
+    </section>
+
+    <section class="section">
+      <h2 class="section__title">Juegos Destacados de la Semana</h2>
+      <div class="catalog-grid">
+        <article class="card card--destacada">
+          <span class="card__badge card__badge--exclusivo">Exclusivo</span>
+          <img src="https://picsum.photos/seed/game1/400/250" alt="Portada de Cyber Odyssey 2099" class="card__image">
+          <div class="card__body">
+            <h3 class="card__title">Cyber Odyssey 2099</h3>
+            <p class="card__description">Edición coleccionista con caja metálica y libro de arte.</p>
+            <p class="card__price">59,99 €</p>
+            <a href="producto.html" class="button button--primary">Ver ficha</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="card__badge card__badge--oferta">Oferta</span>
+          <img src="https://picsum.photos/seed/game2/400/250" alt="Portada de Shadows of Eldoria" class="card__image">
+          <div class="card__body">
+            <h3 class="card__title">Shadows of Eldoria</h3>
+            <p class="card__description">RPG de mundo abierto con más de 100 horas de historia.</p>
+            <p class="card__price">39,99 €</p>
+            <a href="producto.html" class="button button--secondary">Ver ficha</a>
+          </div>
+        </article>
+
+        <article class="card">
+          <span class="card__badge card__badge--nuevo">Nuevo</span>
+          <img src="https://picsum.photos/seed/game3/400/250" alt="Portada de Apex Drift Racing" class="card__image">
+          <div class="card__body">
+            <h3 class="card__title">Apex Drift Racing</h3>
+            <p class="card__description">Simulador de conducción con circuitos reales escaneados.</p>
+            <p class="card__price">49,99 €</p>
+            <a href="producto.html" class="button button--secondary">Ver ficha</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <p class="footer__copy">&copy; 2026 PixelVault - Proyecto Diseño de Interfaces 2º DAW.</p>
+      <div class="footer__links">
+        <a href="catalogo.html" class="footer__link">Catálogo</a>
+        <a href="contacto.html" class="footer__link">Soporte y Contacto</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,90 @@
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: vars.$font-main;
+  font-size: vars.$base-font-size;
+  background-color: vars.$bg-light;
+  color: vars.$text-main;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.main-container {
+  @include mix.container(1200px);
+  min-height: 75vh;
+  padding-top: vars.$spacing-lg;
+}
+
+.hero {
+  background-color: vars.$bg-dark;
+  color: vars.$text-light;
+  padding: vars.$spacing-xl vars.$spacing-lg;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: vars.$spacing-xl;
+
+  &__title {
+    font-family: vars.$font-heading;
+    font-size: fn.rem(36);
+    margin-bottom: vars.$spacing-sm;
+  }
+
+  &__subtitle {
+    font-size: fn.rem(18);
+    margin-bottom: vars.$spacing-lg;
+    opacity: 0.9;
+  }
+}
+
+.section {
+  margin-bottom: vars.$spacing-xl;
+
+  &__title {
+    font-family: vars.$font-heading;
+    font-size: fn.rem(28);
+    margin-bottom: vars.$spacing-lg;
+  }
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-md;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-xs;
+  }
+
+  &__label {
+    font-weight: 600;
+  }
+
+  &__input {
+    padding: vars.$spacing-sm;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: inherit;
+  }
+}

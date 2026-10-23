@@ -1,0 +1,103 @@
+@use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/functions" as fn;
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: vars.$spacing-lg;
+
+  @include mix.respond-to(vars.$bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background-color: vars.$text-light;
+  @include mix.card-elevation(10px, 0.08);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--destacada {
+    border: 2px solid vars.$primary-color;
+    @include mix.card-elevation(10px, 0.18);
+  }
+
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: vars.$spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-sm;
+    flex-grow: 1;
+  }
+
+  &__title {
+    font-family: vars.$font-heading;
+    font-size: fn.rem(20);
+    color: vars.$text-main;
+  }
+
+  &__description {
+    font-size: fn.rem(14);
+    color: #57606f;
+    flex-grow: 1;
+  }
+
+  &__price {
+    font-size: fn.rem(22);
+    font-weight: bold;
+    color: vars.$primary-dark;
+  }
+
+  &__badge {
+    position: absolute;
+    top: vars.$spacing-sm;
+    right: vars.$spacing-sm;
+    padding: vars.$spacing-xs vars.$spacing-sm;
+    border-radius: 4px;
+    color: vars.$text-light;
+    font-size: fn.rem(12);
+    font-weight: bold;
+    text-transform: uppercase;
+
+    // Generación dinámica de modificadores BEM usando @each y el mapa
+    @each $nombre, $color in vars.$badge-colors {
+      &--#{$nombre} {
+        background-color: $color;
+      }
+    }
+  }
+}
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: vars.$spacing-xl;
+  background-color: vars.$text-light;
+  padding: vars.$spacing-lg;
+  @include mix.card-elevation(12px, 0.1);
+
+  @include mix.respond-to(vars.$bp-mobile) {
+    grid-template-columns: 1fr;
+  }
+
+  &__image {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-md;
+  }
+}
